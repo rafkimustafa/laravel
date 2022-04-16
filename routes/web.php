@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +26,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::resource('students', StudentsController::class)->middleware('auth:sanctum');
