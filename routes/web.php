@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\StudentsController;
 
 /*
@@ -30,5 +30,5 @@ Route::middleware([
 
 Route::resource('students', StudentsController::class)->middleware('auth:sanctum');
 
-Route::resource('barang', BarangController::class)->middleware('auth:sanctum');
+Route::resource('products', ProductsController::class)->middleware('auth:sanctum');
 

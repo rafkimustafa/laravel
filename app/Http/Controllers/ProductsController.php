@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
-use App\Http\Requests\StoreBarangRequest;
-use App\Http\Requests\UpdateBarangRequest;
+use App\Models\Products;
+use App\Http\Requests\StoreProductsRequest;
+use App\Http\Requests\UpdateProductsRequest;
 
-class BarangController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::all();
-        return view('barang.index',[
-            'barang' => $barang
+        $products = Products::all();
+        return view('students.index',[
+            'products' => $products
         ]);
     }
 
@@ -34,10 +34,10 @@ class BarangController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBarangRequest  $request
+     * @param  \App\Http\Requests\StoreProductsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBarangRequest $request)
+    public function store(StoreProductsRequest $request)
     {
         //
     }
@@ -45,10 +45,10 @@ class BarangController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Barang  $barang
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show(Barang $barang)
+    public function show(Products $products)
     {
         //
     }
@@ -56,10 +56,10 @@ class BarangController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Barang  $barang
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(Barang $barang)
+    public function edit(Products $products)
     {
         //
     }
@@ -67,11 +67,11 @@ class BarangController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBarangRequest  $request
-     * @param  \App\Models\Barang  $barang
+     * @param  \App\Http\Requests\UpdateProductsRequest  $request
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBarangRequest $request, Barang $barang)
+    public function update(UpdateProductsRequest $request, Products $products)
     {
         //
     }
@@ -79,10 +79,10 @@ class BarangController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Barang  $barang
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang $barang)
+    public function destroy(Products $products)
     {
         //
     }
