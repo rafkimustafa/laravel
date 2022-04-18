@@ -28,7 +28,14 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('students', StudentsController::class)->middleware('auth:sanctum');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/products', function () {
+        return view('products');
+    })->name('products');
+});
 
-Route::resource('products', ProductsController::class)->middleware('auth:sanctum');
 
