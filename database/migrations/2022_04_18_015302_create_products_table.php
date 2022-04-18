@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->index();
+            $table->string('name');
+            $table->float('price',8 , 2);
+            $table->boolean('status');
             $table->timestamps();
         });
     }
