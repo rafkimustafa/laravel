@@ -13,6 +13,11 @@ class Products extends Component
     public $active;
     public $search;
 
+    protected $queryString = [
+        'active' => ['except' => false],
+        'search' => ['except' => '']
+    ];
+
     public function render()
     {
         //read table
@@ -42,6 +47,10 @@ class Products extends Component
         return view('livewire.products');
     }
     public function updatingActive()
+    {
+        $this->resetPage();
+    }
+    public function updating()
     {
         $this->resetPage();
     }

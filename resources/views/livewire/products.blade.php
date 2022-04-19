@@ -32,9 +32,11 @@
                <th class="px-4 py-2">
                   <div class="flex items center">Price</div>
                </th>
+               @if (!$active)
                <th class="px-4 py-2">
                   Status
                </th>
+               @endif
                <th class="px-4 py-2">
                   Actions
                </th>
@@ -46,7 +48,9 @@
                   <td class="border px-4 py-2"> {{ $product->id }}</td>
                   <td class="border px-4 py-2"> {{ $product->name }}</td>
                   <td class="border px-4 py-2"> {{ number_format($product->price, 2) }}</td>
-                  <td class="border px-4 py-2"> {{ $product->status ? 'Active' : 'Not-Active' }}</td>
+                  @if (!$active)
+                  <td class="border px-4 py-2"> {{ $product->status ? 'Active' : 'Not-Active' }}</td>   
+                  @endif
                   <td class="border px-4 py-2"> Edit Delete</td>
                </tr>
             @endforeach
