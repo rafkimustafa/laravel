@@ -38,6 +38,6 @@
       </table>
    </div>
    <div class="div mt-4">
-      {{ $product-> links() }}
+      {{ $products-> links() }}
    </div>
 </div>
