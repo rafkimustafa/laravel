@@ -3,9 +3,18 @@
        Welcome to your Jetstream application!
    </div>
 
+   {{ $query }}
    <div class="mt-6">
       <div class="flex justify-between">
-         <div></div>
+         <div class="flex justify-center">
+            <div class="mb-3 xl:w-96">
+              <div class="input-group relative flex flex-wrap items-stretch w-full mb-4 rounded">
+                <input wire:model="search" type="search" class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                <span class="input-group-text flex items-center px-3 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded" id="basic-addon2">
+                </span>
+              </div>
+            </div>
+          </div>
          <div class="mr-2">
             <input type="checkbox" class="mr-6 leading-tigth" wire:model='active'>
             Active Only?
