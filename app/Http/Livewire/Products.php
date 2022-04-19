@@ -14,6 +14,7 @@ class Products extends Component
     public $search;
     public $sortBy = 'id';
     public $sortAsc = true;
+    public $confirmingProductDeletion = false;
 
     protected $queryString = [
         'active' => ['except' => false],
@@ -67,7 +68,14 @@ class Products extends Component
         }
         $this->sortBy = $field;
     }
-
-
-    
+    public function confirmProductDeletion($id)
+    {
+       // $product->delete();
+        $this->confirmingProductDeletion = $id;
+    }
+    public function deleteProduct(Product $product)
+{
+    $product->delete();
+    $this->confirmProductDeletion = false;
+}    
 }

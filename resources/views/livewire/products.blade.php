@@ -38,42 +38,66 @@
                      <button wire:click="sortBy('name')">Name</button>
                      <x-sort-icon sortField="name" :sort-by="$sortBy" :sort-asc="$sortAsc" />
                   </div>
-                  </div>
-               </th>
-               <th class="px-4 py-2">
-                  <div class="flex items center">
-                     <button wire:click="sortBy('price')">Price</button>
-                      <x-sort-icon sortField="price" :sort-by="$sortBy" :sort-asc="$sortAsc" />
-                  </div>
-                  </div>
-               </div>
-               </th>
-               @if (!$active)
-               <th class="px-4 py-2">
-                  Status
-               </th>
-               @endif
-               <th class="px-4 py-2">
-                  Actions
-               </th>
-               </tr>
-               </thead>
-               <tbody>
-                  @foreach ($products as $product)
-                  <tr>
-                     <td class="border px-4 py-2"> {{ $product->id }}</td>
-                     <td class="border px-4 py-2"> {{ $product->name }}</td>
-                     <td class="border px-4 py-2"> {{ number_format($product->price, 2) }}</td>
-                     @if (!$active)
-                     <td class="border px-4 py-2"> {{ $product->status ? 'Active' : 'Not-Active' }}</td>
-                     @endif
-                     <td class="border px-4 py-2"> Edit Delete</td>
-                  </tr>
-                  @endforeach
-               </tbody>
-               </table>
-               </div>
-               <div class="div mt-4">
-                  {{ $products-> links() }}
-               </div>
-               </div>
+   </div>
+   </th>
+   <th class="px-4 py-2">
+      <div class="flex items center">
+         <button wire:click="sortBy('price')">Price</button>
+         <x-sort-icon sortField="price" :sort-by="$sortBy" :sort-asc="$sortAsc" />
+      </div>
+</div>
+</div>
+</th>
+@if (!$active)
+<th class="px-4 py-2">
+   Status
+</th>
+@endif
+<th class="px-4 py-2">
+   Actions
+</th>
+</tr>
+</thead>
+<tbody>
+   @foreach ($products as $product)
+   <tr>
+      <td class="border px-4 py-2"> {{ $product->id }}</td>
+      <td class="border px-4 py-2"> {{ $product->name }}</td>
+      <td class="border px-4 py-2"> {{ number_format($product->price, 2) }}</td>
+      @if (!$active)
+      <td class="border px-4 py-2"> {{ $product->status ? 'Active' : 'Not-Active' }}</td>
+      @endif
+      <td class="border px-4 py-2">
+         Edit
+         <x-jet-danger-button wire:click="confirmProductDeletion ( {{ $product->id }} )" wire:loading.attr="disabled">
+            Delete
+         </x-jet-danger-button>
+      </td>
+   </tr>
+   @endforeach
+</tbody>
+</table>
+</div>
+<div class="div mt-4">
+   {{ $products-> links() }}
+</div>
+<x-jet-dialog-modal wire:model="confirmingProductDeletion">
+   <x-slot name="title">
+      {{ __('Delete Product') }}
+   </x-slot>
+
+   <x-slot name="content">
+      {{ __('Are you sure you want to delete your Product?.') }}
+   </x-slot>
+
+   <x-slot name="footer">
+      <x-jet-secondary-button wire:click="$set('confirmingProductDeletion', false)" wire:loading.attr="disabled">
+         {{ __('Cancel') }}
+      </x-jet-secondary-button>
+
+      <x-jet-danger-button class="ml-3" wire:click="deleteProduct ({{ $confirmingProductDeletion }})" wire:loading.attr="disabled">
+         {{ __('Delete') }}
+      </x-jet-danger-button>
+   </x-slot>
+</x-jet-dialog-modal>
+</div>
