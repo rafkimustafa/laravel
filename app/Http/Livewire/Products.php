@@ -12,17 +12,21 @@ class Products extends Component
 
     public $active;
     public $search;
+    public $sortBy = 'id';
+    public $sortAsc = true;
 
     protected $queryString = [
         'active' => ['except' => false],
-        'search' => ['except' => '']
+        'search' => ['except' => ''],
+        'sortBy' => ['except' => 'id'],
+        'sortAsc' => ['except' => true],
     ];
 
     public function render()
     {
         //read table
         $products = Product::where('user_id', auth()->user()->id)
-        //fitur search
+            //fitur search
             ->when($this->search, function ($query) {
                 return $query->where(function ($query) {
                     $query->where('name', 'like', '%' . $this->search . '%')
@@ -32,7 +36,9 @@ class Products extends Component
 
             ->when($this->active, function ($query) {
                 return $query->active();
-            });
+            })
+            ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC');
+
 
         //search tabel
         $query = $products->toSql();
@@ -54,4 +60,14 @@ class Products extends Component
     {
         $this->resetPage();
     }
+    public function sortBy($field)
+    {
+        if( $field == $this->sortBy){
+            $this->sortAsc = !$this->sortAsc;
+        }
+        $this->sortBy = $field;
+    }
+
+
+    
 }
