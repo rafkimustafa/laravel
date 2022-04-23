@@ -1,9 +1,12 @@
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-   <div class="mt-8 text-2xl">
-      Welcome to your Jetstream application!
-   </div>
-
-   {{ $query }}
+   <div class="mt-8 text-2xl flex justify-between">
+      <div>Product</div>
+      <div class="mr-2">
+         <x-jet-button wire:click='confirmProductAdd' class="bg-blue-500 hover:bg-blue-700">
+            Add New Product
+         </x-jet-button>
+      </div>
+   </div> 
    <div class="mt-6">
       <div class="flex justify-between">
          <div class="flex justify-center">
@@ -91,12 +94,34 @@
    </x-slot>
 
    <x-slot name="footer">
-      <x-jet-secondary-button wire:click="$set('confirmingProductDeletion', false)" wire:loading.attr="disabled">
+      <x-jet-secondary-button wire:click="$toggle('confirmingProductDeletion', false)" wire:loading.attr="disabled">
          {{ __('Cancel') }}
       </x-jet-secondary-button>
 
-      <x-jet-danger-button class="ml-3" wire:click="deleteProduct ({{ $confirmingProductDeletion }})" wire:loading.attr="disabled">
+      <x-jet-danger-button class="ml-3" wire:click="deleteProduct ({{ $confirmingProductDeletion }})"
+         wire:loading.attr="disabled">
          {{ __('Delete') }}
+      </x-jet-danger-button>
+   </x-slot>
+</x-jet-dialog-modal>
+
+<x-jet-dialog-modal wire:model="confirmingProductAdd">
+   <x-slot name="title">
+      {{ __('Add Product') }}
+   </x-slot>
+
+   <x-slot name="content">
+     Form data ada disini
+   </x-slot>
+
+   <x-slot name="footer">
+      <x-jet-secondary-button wire:click="$toggle('confirmingProductAdd', false)" wire:loading.attr="disabled">
+         {{ __('Cancel') }}
+      </x-jet-secondary-button>
+
+      <x-jet-danger-button class="ml-3" wire:click="saveProduct ()"
+         wire:loading.attr="disabled">
+         {{ __('Save') }}
       </x-jet-danger-button>
    </x-slot>
 </x-jet-dialog-modal>

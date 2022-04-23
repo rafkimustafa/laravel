@@ -14,13 +14,22 @@ class Products extends Component
     public $search;
     public $sortBy = 'id';
     public $sortAsc = true;
+    public $product;
+
     public $confirmingProductDeletion = false;
+    public $confirmingProductAdd = false;
 
     protected $queryString = [
         'active' => ['except' => false],
         'search' => ['except' => ''],
         'sortBy' => ['except' => 'id'],
         'sortAsc' => ['except' => true],
+    ];
+
+    protected $rules = [
+        'product.name' => 'required|string|min:4',
+        'product.price' => 'required|numeric|between:1,100',
+        'product.status' => 'boolean'
     ];
 
     public function render()
@@ -63,19 +72,26 @@ class Products extends Component
     }
     public function sortBy($field)
     {
-        if( $field == $this->sortBy){
+        if ($field == $this->sortBy) {
             $this->sortAsc = !$this->sortAsc;
         }
         $this->sortBy = $field;
     }
     public function confirmProductDeletion($id)
     {
-       // $product->delete();
+        // $product->delete();
         $this->confirmingProductDeletion = $id;
     }
+
     public function deleteProduct(Product $product)
-{
-    $product->delete();
-    $this->confirmProductDeletion = false;
-}    
+    {
+        $product->delete();
+        $this->confirmProductDeletion = false;
+    }
+
+    public function confirmProductAdd()
+    {
+        // $product->delete();
+        $this->confirmingProductAdd = true;
+    }
 }
