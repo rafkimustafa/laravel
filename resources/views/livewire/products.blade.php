@@ -6,7 +6,7 @@
             Add New Product
          </x-jet-button>
       </div>
-   </div> 
+   </div>
    <div class="mt-6">
       <div class="flex justify-between">
          <div class="flex justify-center">
@@ -111,7 +111,25 @@
    </x-slot>
 
    <x-slot name="content">
-     Form data ada disini
+      <div class="col-span-6 sm:col-span-4 mt-4">
+         <x-jet-label for="name" value="{{ __('Name') }}" />
+         <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="product.name" />
+         <x-jet-input-error for="product.name" class="mt-2" />
+      </div>
+
+      <div class="col-span-6 sm:col-span-4 mt-4">
+         <x-jet-label for="price" value="{{ __('Price') }}" />
+         <x-jet-input id="price" type="text" class="mt-1 block w-full" wire:model.defer="product.price" />
+         <x-jet-input-error for="product.price" class="mt-2" />
+      </div>
+
+      <div class="col-span-6 sm:col-span-4 mt-4">
+         <label class="flex items-center">
+            <input type="checkbox" wire:model.defer="product.status" class="form-checkbox">
+            <span class="ml-2 text-sm text-gray-600">Active</span>
+         </label>
+      </div>
+
    </x-slot>
 
    <x-slot name="footer">
@@ -119,8 +137,7 @@
          {{ __('Cancel') }}
       </x-jet-secondary-button>
 
-      <x-jet-danger-button class="ml-3" wire:click="saveProduct ()"
-         wire:loading.attr="disabled">
+      <x-jet-danger-button class="ml-3" wire:click="saveProduct ()" wire:loading.attr="disabled">
          {{ __('Save') }}
       </x-jet-danger-button>
    </x-slot>

@@ -92,6 +92,18 @@ class Products extends Component
     public function confirmProductAdd()
     {
         // $product->delete();
+        $this->reset(['product']);
         $this->confirmingProductAdd = true;
+    }
+
+    public function saveProduct()
+    {
+        $this->validate();
+
+        auth()->user()->product()->create([
+            'name' => $this->product['name'],
+            'price' => $this->product['price'],
+            'status' => $this->product['status'] ?? 0
+        ]);
     }
 }
